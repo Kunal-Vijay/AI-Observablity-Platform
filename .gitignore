@@ -1,0 +1,48 @@
+# Secrets — keep .env.example tracked
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.uv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+.vercel/
+coverage/
+.pnp
+.pnp.*
+*.tsbuildinfo
+next-env.d.ts
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Local app data (paths are specific so source packages are not ignored)
+/SentinelAI/storage/
+/SentinelAI/traces/
+/SentinelAI/chroma_data/
+/SentinelAI/registry/documents.json
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.pem
+*.swp
+*~
