@@ -25,6 +25,7 @@ class Settings(BaseModel):
     model: str
     model_fallbacks: tuple[str, ...] = ()
     model_provider: str = "openrouter"
+    openrouter_byok_providers: tuple[str, ...] = ()
     base_url: str = OPENROUTER_BASE_URL
     database_url: str = Field(..., min_length=1)
     database_connect_args: dict[str, Any] = Field(default_factory=dict)
@@ -108,6 +109,32 @@ def _parse_fallbacks(raw: str | None) -> tuple[str, ...] | None:
     return parts
 
 
+def _parse_csv(raw: str | None) -> tuple[str, ...]:
+    if raw is None:
+        return ()
+    return tuple(part.strip() for part in raw.split(",") if part.strip())
+
+
+def _byok_providers() -> tuple[str, ...]:
+    """OpenRouter provider slugs that should use workspace BYOK keys.
+
+    Gemini/Google keys are not sent on chat requests. Add the key in
+    OpenRouter Settings → Integrations, then set OPENROUTER_BYOK_PROVIDERS
+    (or GEMINI_API_KEY as a signal to pin google-ai-studio).
+    """
+    explicit = _parse_csv(os.getenv("OPENROUTER_BYOK_PROVIDERS"))
+    if explicit:
+        return explicit
+    gemini_key = (
+        os.getenv("GEMINI_API_KEY")
+        or os.getenv("GOOGLE_AI_API_KEY")
+        or os.getenv("GOOGLE_GENERATIVE_AI_API_KEY")
+    )
+    if gemini_key and gemini_key.strip():
+        return ("google-ai-studio",)
+    return ()
+
+
 @lru_cache(maxsize=1)
 def load_settings() -> Settings:
     load_dotenv()
@@ -140,6 +167,7 @@ def load_settings() -> Settings:
         model=plug.model,
         model_fallbacks=plug.fallbacks,
         model_provider=plug.provider,
+        openrouter_byok_providers=_byok_providers(),
         base_url=os.getenv("OPENROUTER_BASE_URL", OPENROUTER_BASE_URL),
         database_url=async_database_url,
         database_connect_args=database_connect_args,

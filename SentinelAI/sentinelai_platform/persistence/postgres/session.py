@@ -18,6 +18,11 @@ def create_engine(
     return create_async_engine(
         database_url,
         pool_pre_ping=True,
+        # Neon closes idle compute connections (~5 min). Recycle before that.
+        pool_recycle=180,
+        pool_size=5,
+        max_overflow=5,
+        pool_timeout=30,
         connect_args=connect_args or {},
     )
 

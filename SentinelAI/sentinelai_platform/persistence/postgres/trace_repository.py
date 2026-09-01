@@ -1,12 +1,25 @@
 from uuid import UUID
 
 from sqlalchemy import select
+from sqlalchemy.exc import DBAPIError, InterfaceError, OperationalError
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from sentinelai_platform.persistence.postgres.models_span import SpanModel
 from sentinelai_platform.persistence.postgres.models_trace import TraceModel
 from sentinelai_platform.projections import SpanRecord, TraceRecord
 from sentinelai_platform.repositories.trace import TraceRepository
+
+_STALE_CONNECTION_MARKERS = (
+    "connection was closed",
+    "connectiondoesnotexist",
+    "server closed the connection",
+    "the connection is closed",
+)
+
+
+def _is_stale_connection(exc: BaseException) -> bool:
+    message = str(exc).lower()
+    return any(marker in message for marker in _STALE_CONNECTION_MARKERS)
 
 
 class PostgresTraceRepository(TraceRepository):
@@ -18,39 +31,48 @@ class PostgresTraceRepository(TraceRepository):
         trace: TraceRecord,
         spans: list[SpanRecord],
     ) -> TraceRecord:
-        async with self._session_factory() as session:
-            trace_row = TraceModel(
-                trace_id=trace.trace_id,
-                execution_id=trace.execution_id,
-                status=trace.status,
-                span_count=trace.span_count,
-                latency_ms=trace.latency_ms,
-                storage_path=trace.storage_path,
-                created_at=trace.created_at,
-            )
-            session.add(trace_row)
-            # TraceModel has no ORM relationship to SpanModel, so force the
-            # parent row to exist before inserting children with a trace FK.
-            await session.flush()
-            for span in spans:
-                session.add(
-                    SpanModel(
-                        span_id=span.span_id,
-                        trace_id=span.trace_id,
-                        parent_span_id=span.parent_span_id,
-                        span_type=span.span_type,
-                        latency_ms=span.latency_ms,
-                        model=span.model,
-                        tokens_input=span.tokens_input,
-                        tokens_output=span.tokens_output,
-                        status=span.status,
-                        error=span.error,
-                        started_at=span.started_at,
-                        ended_at=span.ended_at,
+        last_error: BaseException | None = None
+        for attempt in range(2):
+            try:
+                async with self._session_factory() as session:
+                    trace_row = TraceModel(
+                        trace_id=trace.trace_id,
+                        execution_id=trace.execution_id,
+                        status=trace.status,
+                        span_count=trace.span_count,
+                        latency_ms=trace.latency_ms,
+                        storage_path=trace.storage_path,
+                        created_at=trace.created_at,
                     )
-                )
-            await session.commit()
-            return trace
+                    session.add(trace_row)
+                    # TraceModel has no ORM relationship to SpanModel, so force the
+                    # parent row to exist before inserting children with a trace FK.
+                    await session.flush()
+                    for span in spans:
+                        session.add(
+                            SpanModel(
+                                span_id=span.span_id,
+                                trace_id=span.trace_id,
+                                parent_span_id=span.parent_span_id,
+                                span_type=span.span_type,
+                                latency_ms=span.latency_ms,
+                                model=span.model,
+                                tokens_input=span.tokens_input,
+                                tokens_output=span.tokens_output,
+                                status=span.status,
+                                error=span.error,
+                                started_at=span.started_at,
+                                ended_at=span.ended_at,
+                            )
+                        )
+                    await session.commit()
+                    return trace
+            except (DBAPIError, OperationalError, InterfaceError, OSError) as exc:
+                last_error = exc
+                if attempt == 0 and _is_stale_connection(exc):
+                    continue
+                raise
+        raise last_error  # pragma: no cover
 
     async def get(self, trace_id: UUID) -> TraceRecord | None:
         async with self._session_factory() as session:

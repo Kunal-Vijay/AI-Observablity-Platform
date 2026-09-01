@@ -48,12 +48,14 @@ class OpenRouterClient:
         model: str,
         *,
         fallbacks: Sequence[str] = (),
+        byok_providers: Sequence[str] = (),
         base_url: str = OPENROUTER_BASE_URL,
         timeout: float = 120.0,
     ) -> None:
         self._api_key = api_key
         self._model = model
         self._fallbacks = tuple(fallbacks)
+        self._byok_providers = tuple(provider.strip() for provider in byok_providers if provider.strip())
         self._base_url = base_url
         self._timeout = timeout
         self._http = httpx.AsyncClient(timeout=timeout)
@@ -94,8 +96,12 @@ class OpenRouterClient:
             "model": self._model,
             "messages": [user_message.model_dump()],
         }
-        # OpenRouter model-layer failover: try next model on rate limit / downtime.
-        if self._fallbacks:
+        # BYOK pins routing to providers that hold your key (e.g. google-ai-studio).
+        # Mixed-model fallbacks would be skipped by `only`, so omit them.
+        if self._byok_providers:
+            payload["provider"] = {"only": list(self._byok_providers)}
+        elif self._fallbacks:
+            # OpenRouter model-layer failover: try next model on rate limit / downtime.
             payload["models"] = list(self._fallbacks)
         if json_mode:
             payload["response_format"] = {"type": "json_object"}
@@ -131,17 +137,19 @@ class OpenRouterClient:
 
         if status == 200:
             return
+        detail = http_response.text.strip()[:400]
+        suffix = f" {detail}" if detail else ""
         if status == 401:
             raise ModelAuthenticationError(
-                f"Request {request_id}: Unauthorized (401). Check your API key."
+                f"Request {request_id}: Unauthorized (401). Check your API key.{suffix}"
             )
         if status == 429:
             raise ModelRateLimitError(
-                f"Request {request_id}: Rate limited (429). Slow down and retry."
+                f"Request {request_id}: Rate limited (429). Slow down and retry.{suffix}"
             )
         if status >= 500:
             raise ModelUnavailableError(
-                f"Request {request_id}: Server error ({status}). Try again later."
+                f"Request {request_id}: Server error ({status}). Try again later.{suffix}"
             )
 
         raise LLMError(
@@ -213,5 +221,6 @@ def create_llm_client(settings: Settings) -> OpenRouterClient:
         api_key=settings.openrouter_api_key,
         model=settings.model,
         fallbacks=settings.model_fallbacks,
+        byok_providers=settings.openrouter_byok_providers,
         base_url=settings.base_url,
     )

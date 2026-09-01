@@ -35,3 +35,17 @@ To add a plug, register a `ModelPlug` in
 `examples/reference_runtime/model_plugs.py`. Consumers depend on the
 `LLMClient` protocol; the composition root builds the client via
 `create_llm_client(settings)`.
+
+## OpenRouter BYOK (Gemini)
+
+Add your Gemini / Google AI Studio key in
+[OpenRouter Integrations](https://openrouter.ai/settings/integrations), then
+set:
+
+```bash
+OPENROUTER_BYOK_PROVIDERS=google-ai-studio
+```
+
+The runtime still authenticates with `OPENROUTER_API_KEY`. The Gemini key is
+not sent on chat requests; `provider.only` pins routing to Google AI Studio so
+OpenRouter uses the workspace BYOK key.
