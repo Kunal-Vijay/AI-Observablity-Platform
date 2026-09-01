@@ -29,7 +29,7 @@ const MODES: { id: DemoMode; label: string; samples: string[] }[] = [
     id: "chat",
     label: "General Chat",
     samples: [
-      "Explain SentinelAI in one sentence.",
+      "Explain God's Eye in one sentence.",
       "What is an execution span?",
       "Why do AI systems need observability?",
     ],

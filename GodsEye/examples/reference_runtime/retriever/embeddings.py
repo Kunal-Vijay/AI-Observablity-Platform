@@ -1,7 +1,7 @@
 import asyncio
 from typing import Any
 
-from sentinelai import span
+from gods_eye import span
 
 DEFAULT_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 

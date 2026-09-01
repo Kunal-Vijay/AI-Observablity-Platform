@@ -1,9 +1,9 @@
 """Compatibility export for the storage interface.
 
-New code should import :class:`StorageProvider` from :mod:`sentinelai.ports`.
-Concrete providers live under :mod:`sentinelai_platform.storage`.
+New code should import :class:`StorageProvider` from :mod:`gods_eye.ports`.
+Concrete providers live under :mod:`gods_eye_platform.storage`.
 """
 
-from sentinelai.ports.storage import StorageProvider
+from gods_eye.ports.storage import StorageProvider
 
 __all__ = ["StorageProvider"]

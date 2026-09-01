@@ -11,7 +11,7 @@ from uuid import UUID, uuid4
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from sentinelai.contracts import (
+from gods_eye.contracts import (
     ExecutionSnapshot,
     ExecutionStatus,
     ModelInfo,
@@ -19,11 +19,11 @@ from sentinelai.contracts import (
     TerminalExecutionStatus,
     Trace,
 )
-from sentinelai.contracts.execution import (
+from gods_eye.contracts.execution import (
     CURRENT_REPOSITORY_VERSION,
     SnapshotCreationMetrics,
 )
-from sentinelai.execution_stream import (
+from gods_eye.execution_stream import (
     AnalysisCompleted,
     ExecutionCancelled,
     ExecutionCompleted,
@@ -37,7 +37,7 @@ from sentinelai.execution_stream import (
     TraceCreated,
     VerificationCompleted,
 )
-from sentinelai.tracing.tracer import Tracer
+from gods_eye.tracing.tracer import Tracer
 
 
 class ExecutionContext(BaseModel):

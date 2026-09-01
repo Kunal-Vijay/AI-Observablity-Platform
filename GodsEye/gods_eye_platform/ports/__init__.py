@@ -1,5 +1,5 @@
 """Platform-owned infrastructure ports."""
 
-from sentinelai_platform.ports.storage import StorageProvider
+from gods_eye_platform.ports.storage import StorageProvider
 
 __all__ = ["StorageProvider"]

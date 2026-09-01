@@ -1,1 +1,1 @@
-"""Reference runtime — a customer application built on SentinelAI."""
+"""Reference runtime — a customer application built on God's Eye."""

@@ -1,11 +1,11 @@
 # Reference Runtime
 
-Executable contract test and learning material for SentinelAI.
+Executable contract test and learning material for God's Eye.
 
 It implements planner / RAG / verifier / analyzer business logic and consumes
-the frozen SDK instrumentation API plus optional SentinelAI Platform
+the frozen SDK instrumentation API plus optional God's Eye Platform
 persistence, storage, and HTTP packages. Its composition root configures
-SentinelAI once with an in-memory Execution Stream and Platform persistence
+God's Eye once with an in-memory Execution Stream and Platform persistence
 subscribers. Business methods use `@execution` / `@span` and return only
 business objects. It is not imported by either product.
 

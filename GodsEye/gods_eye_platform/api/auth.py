@@ -12,7 +12,7 @@ from fastapi import HTTPException, Request, status
 from jwt import InvalidTokenError, PyJWKClient
 
 _LOGGER = logging.getLogger(__name__)
-_AUTH_DISABLED_ENV = "SENTINELAI_AUTH_DISABLED"
+_AUTH_DISABLED_ENV = "GODS_EYE_AUTH_DISABLED"
 _JWT_SECRET_ENV = "SUPABASE_JWT_SECRET"
 _SUPABASE_URL_ENV = "SUPABASE_URL"
 _DISABLED_VALUES = frozenset({"1", "true", "yes", "on"})

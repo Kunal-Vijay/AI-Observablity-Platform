@@ -11,14 +11,14 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from sqlalchemy.orm import aliased
 
-from sentinelai.contracts import (
+from gods_eye.contracts import (
     ExecutionSnapshot,
     ExecutionSummary,
     TerminalExecutionStatus,
 )
-from sentinelai_platform.persistence.postgres.models_execution import ExecutionModel
-from sentinelai_platform.persistence.postgres.models_snapshot import ExecutionSnapshotModel
-from sentinelai_platform.repositories.execution import (
+from gods_eye_platform.persistence.postgres.models_execution import ExecutionModel
+from gods_eye_platform.persistence.postgres.models_snapshot import ExecutionSnapshotModel
+from gods_eye_platform.repositories.execution import (
     ExecutionSnapshotAlreadyExistsError,
     ExecutionSnapshotRepository,
 )

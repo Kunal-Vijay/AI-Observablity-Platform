@@ -8,7 +8,7 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from sentinelai.contracts import ExecutionSummary, TerminalExecutionStatus
+from gods_eye.contracts import ExecutionSummary, TerminalExecutionStatus
 
 TerminalStatusFilter = Literal["completed", "failed", "cancelled"]
 

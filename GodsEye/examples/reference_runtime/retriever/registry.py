@@ -8,8 +8,8 @@ from examples.reference_runtime.db.repositories.document_repository import (
     DocumentRepository,
 )
 from examples.reference_runtime.retriever.schemas import IndexedDocument
-from sentinelai import span
-from sentinelai_platform.ports.storage import StorageProvider
+from gods_eye import span
+from gods_eye_platform.ports.storage import StorageProvider
 
 DocumentStatus = Literal["indexing", "ready", "failed"]
 

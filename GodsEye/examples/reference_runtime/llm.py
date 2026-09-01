@@ -17,7 +17,7 @@ from examples.reference_runtime.errors import (
     ModelValidationError,
 )
 from examples.reference_runtime.schemas import ChatMessage, LLMResponse
-from sentinelai import span
+from gods_eye import span
 
 __all__ = [
     "LLMClient",
@@ -55,7 +55,9 @@ class OpenRouterClient:
         self._api_key = api_key
         self._model = model
         self._fallbacks = tuple(fallbacks)
-        self._byok_providers = tuple(provider.strip() for provider in byok_providers if provider.strip())
+        self._byok_providers = tuple(
+            provider.strip() for provider in byok_providers if provider.strip()
+        )
         self._base_url = base_url
         self._timeout = timeout
         self._http = httpx.AsyncClient(timeout=timeout)

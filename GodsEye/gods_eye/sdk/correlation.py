@@ -6,8 +6,8 @@ from contextvars import ContextVar
 from dataclasses import dataclass
 from uuid import UUID
 
-from sentinelai.execution.active import get_active_execution
-from sentinelai.tracing.context import TraceContext
+from gods_eye.execution.active import get_active_execution
+from gods_eye.tracing.context import TraceContext
 
 
 @dataclass(frozen=True, slots=True)
@@ -18,7 +18,7 @@ class _Correlation:
 
 
 _last_correlation: ContextVar[_Correlation | None] = ContextVar(
-    "sentinelai_last_correlation",
+    "gods_eye_last_correlation",
     default=None,
 )
 

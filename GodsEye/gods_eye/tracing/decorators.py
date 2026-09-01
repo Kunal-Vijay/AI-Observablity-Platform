@@ -6,16 +6,16 @@ from typing import Any, ParamSpec, TypeVar, cast
 
 from pydantic import BaseModel
 
-from sentinelai.contracts import SpanStatus
-from sentinelai.execution.active import (
+from gods_eye.contracts import SpanStatus
+from gods_eye.execution.active import (
     apply_capture,
     apply_prompt_keys,
     get_active_execution,
     infer_prompt_keys,
     infer_span_result,
 )
-from sentinelai.tracing.context import TraceContext
-from sentinelai.tracing.tracer import Tracer
+from gods_eye.tracing.context import TraceContext
+from gods_eye.tracing.tracer import Tracer
 
 P = ParamSpec("P")
 R = TypeVar("R")
@@ -121,7 +121,7 @@ def _record_execution_side_effects(
 
     resolved_prompt_keys = prompt_keys or infer_prompt_keys(execution, name)
     if resolved_prompt_keys:
-        from sentinelai.sdk.configure import get_settings
+        from gods_eye.sdk.configure import get_settings
 
         try:
             catalog = get_settings().prompt_catalog

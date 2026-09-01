@@ -5,26 +5,26 @@ from typing import Any
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from sentinelai_platform.api.cors import configure_cors
-from sentinelai_platform.api.demo import router as demo_router
-from sentinelai_platform.api.errors import (
+from gods_eye_platform.api.cors import configure_cors
+from gods_eye_platform.api.demo import router as demo_router
+from gods_eye_platform.api.errors import (
     ExecutionNotFoundError,
     InvalidFilterError,
     PlatformError,
     TraceNotFoundError,
 )
-from sentinelai_platform.api.router import router
-from sentinelai_platform.api.v1 import router as v1_router
+from gods_eye_platform.api.router import router
+from gods_eye_platform.api.v1 import router as v1_router
 
 
 def create_app(
     *,
-    title: str = "SentinelAI",
+    title: str = "God's Eye",
     version: str = "2.0.0",
     lifespan: Any = None,
     dashboard_origins: Sequence[str] | None = None,
 ) -> FastAPI:
-    """Create a FastAPI app exposing SentinelAI Platform read APIs."""
+    """Create a FastAPI app exposing God's Eye Platform read APIs."""
 
     @asynccontextmanager
     async def _default_lifespan(_app: FastAPI) -> AsyncIterator[None]:

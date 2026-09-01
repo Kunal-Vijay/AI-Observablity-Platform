@@ -5,8 +5,8 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 from uuid import UUID
 
-from sentinelai.contracts import ExecutionSnapshot, ExecutionSummary
-from sentinelai_platform.projections import ExecutionRecord
+from gods_eye.contracts import ExecutionSnapshot, ExecutionSummary
+from gods_eye_platform.projections import ExecutionRecord
 
 
 class ExecutionSnapshotAlreadyExistsError(RuntimeError):

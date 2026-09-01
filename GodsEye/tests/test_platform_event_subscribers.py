@@ -5,20 +5,20 @@ from uuid import UUID, uuid4
 
 import pytest
 
-from sentinelai.contracts import (
+from gods_eye.contracts import (
     ExecutionSnapshot,
     ExecutionSummary,
     ModelInfo,
     Span,
     Trace,
 )
-from sentinelai.execution.context import ExecutionContext
-from sentinelai.execution_stream import (
+from gods_eye.execution.context import ExecutionContext
+from gods_eye.execution_stream import (
     ExecutionEvent,
     InMemoryExecutionStream,
 )
-from sentinelai_platform.event_subscribers import register_persistence_subscribers
-from sentinelai_platform.projections import ExecutionRecord
+from gods_eye_platform.event_subscribers import register_persistence_subscribers
+from gods_eye_platform.projections import ExecutionRecord
 
 
 class MemoryLifecycleRepository:

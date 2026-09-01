@@ -6,8 +6,8 @@ import ast
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SENTINELAI = ROOT / "sentinelai"
-PLATFORM = ROOT / "sentinelai_platform"
+GODS_EYE = ROOT / "gods_eye"
+PLATFORM = ROOT / "gods_eye_platform"
 
 SDK_FORBIDDEN_ROOTS = {
     "alembic",
@@ -17,7 +17,7 @@ SDK_FORBIDDEN_ROOTS = {
     "dashboard",
     "dotenv",
     "fastapi",
-    "sentinelai_platform",
+    "gods_eye_platform",
     "sqlalchemy",
     "supabase",
     "storage3",
@@ -57,9 +57,9 @@ def _imported_modules(path: Path) -> set[str]:
     return modules
 
 
-def test_sentinelai_source_avoids_forbidden_dependencies() -> None:
+def test_gods_eye_source_avoids_forbidden_dependencies() -> None:
     violations: list[str] = []
-    for path in _iter_python_files(SENTINELAI):
+    for path in _iter_python_files(GODS_EYE):
         for root in sorted(_imported_roots(path) & SDK_FORBIDDEN_ROOTS):
             violations.append(f"{path.relative_to(ROOT)} imports {root}")
     assert violations == [], "\n".join(violations)
@@ -67,19 +67,19 @@ def test_sentinelai_source_avoids_forbidden_dependencies() -> None:
 
 def test_execution_telemetry_path_does_not_import_repositories() -> None:
     telemetry_files = [
-        SENTINELAI / "execution" / "context.py",
-        SENTINELAI / "execution" / "active.py",
-        SENTINELAI / "sdk" / "configure.py",
-        SENTINELAI / "sdk" / "metadata.py",
-        SENTINELAI / "sdk" / "observe_execution.py",
-        SENTINELAI / "tracing" / "decorators.py",
-        *_iter_python_files(SENTINELAI / "execution_stream"),
+        GODS_EYE / "execution" / "context.py",
+        GODS_EYE / "execution" / "active.py",
+        GODS_EYE / "sdk" / "configure.py",
+        GODS_EYE / "sdk" / "metadata.py",
+        GODS_EYE / "sdk" / "observe_execution.py",
+        GODS_EYE / "tracing" / "decorators.py",
+        *_iter_python_files(GODS_EYE / "execution_stream"),
     ]
     violations = [
         str(path.relative_to(ROOT))
         for path in telemetry_files
         if any(
-            module.startswith("sentinelai.repositories")
+            module.startswith("gods_eye.repositories")
             for module in _imported_modules(path)
         )
     ]
@@ -87,12 +87,12 @@ def test_execution_telemetry_path_does_not_import_repositories() -> None:
 
 
 def test_execution_stream_has_no_platform_or_persistence_dependencies() -> None:
-    allowed_sentinelai_prefix = "sentinelai.execution_stream"
+    allowed_gods_eye_prefix = "gods_eye.execution_stream"
     violations: list[str] = []
-    for path in _iter_python_files(SENTINELAI / "execution_stream"):
+    for path in _iter_python_files(GODS_EYE / "execution_stream"):
         for module in _imported_modules(path):
-            if module.startswith("sentinelai.") and not module.startswith(
-                allowed_sentinelai_prefix
+            if module.startswith("gods_eye.") and not module.startswith(
+                allowed_gods_eye_prefix
             ):
                 violations.append(f"{path.relative_to(ROOT)} imports {module}")
     assert violations == [], "\n".join(violations)
@@ -109,7 +109,7 @@ def test_platform_does_not_import_reference_runtime() -> None:
 def test_contracts_do_not_own_reference_business_models() -> None:
     contract_names = {
         node.name
-        for path in _iter_python_files(SENTINELAI / "contracts")
+        for path in _iter_python_files(GODS_EYE / "contracts")
         for node in ast.walk(
             ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
         )
@@ -120,22 +120,22 @@ def test_contracts_do_not_own_reference_business_models() -> None:
     )
 
 
-def test_sentinelai_package_imports_cleanly() -> None:
+def test_gods_eye_package_imports_cleanly() -> None:
     import sys
 
     modules_before = set(sys.modules)
-    import sentinelai
+    import gods_eye
 
-    assert sentinelai.__version__ == "2.0.0"
+    assert gods_eye.__version__ == "2.0.0"
     assert not any(
-        name == "sentinelai_platform" or name.startswith("sentinelai_platform.")
+        name == "gods_eye_platform" or name.startswith("gods_eye_platform.")
         for name in set(sys.modules) - modules_before
     )
-    assert set(sentinelai.__all__) == {
+    assert set(gods_eye.__all__) == {
         "Contracts",
         "ExecutionStream",
         "Plugin",
-        "Sentinel",
+        "GodsEye",
         "configure",
         "execution",
         "get_current_execution_id",
@@ -147,12 +147,12 @@ def test_sentinelai_package_imports_cleanly() -> None:
 
 def test_sdk_does_not_import_platform_ports_or_repositories() -> None:
     violations: list[str] = []
-    for path in _iter_python_files(SENTINELAI):
+    for path in _iter_python_files(GODS_EYE):
         if "repositories" in path.parts or "ports" in path.parts:
             # Compatibility shims may remain, but the frozen public surface
             # and telemetry path must not depend on Platform packages.
             continue
         modules = _imported_modules(path)
-        if any(module.startswith("sentinelai_platform") for module in modules):
+        if any(module.startswith("gods_eye_platform") for module in modules):
             violations.append(str(path.relative_to(ROOT)))
     assert violations == []

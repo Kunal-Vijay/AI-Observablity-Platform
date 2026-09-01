@@ -9,14 +9,14 @@ from examples.reference_runtime.llm import create_llm_client
 from examples.reference_runtime.planner.planner import Planner
 from examples.reference_runtime.planner.schemas import Plan
 from examples.reference_runtime.schemas import InvoiceExtraction, LLMResponse
-from sentinelai import (
+from gods_eye import (
     Contracts,
     configure,
     execution,
     get_current_execution_latency_ms,
     get_current_trace_id,
 )
-from sentinelai.execution_stream import InMemoryExecutionStream
+from gods_eye.execution_stream import InMemoryExecutionStream
 
 
 def print_plan(plan: Plan) -> None:

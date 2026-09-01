@@ -1,15 +1,15 @@
-# SentinelAI Public API
+# God's Eye Public API
 
 ## Frozen SDK surface
 
 Customer instrumentation should use only:
 
 ```python
-from sentinelai import (
+from gods_eye import (
     Contracts,
     ExecutionStream,
     Plugin,
-    Sentinel,
+    GodsEye,
     configure,
     execution,
     get_current_execution_id,
@@ -17,7 +17,7 @@ from sentinelai import (
     get_current_trace_id,
     span,
 )
-from sentinelai.execution_stream import InMemoryExecutionStream
+from gods_eye.execution_stream import InMemoryExecutionStream
 ```
 
 Compatibility guarantees within this major version:
@@ -36,7 +36,7 @@ Compatibility guarantees within this major version:
 ## Execution Stream
 
 ```python
-from sentinelai.execution_stream import (
+from gods_eye.execution_stream import (
     ExecutionCompleted,
     ExecutionEvent,
     ExecutionEventPublisher,
@@ -52,7 +52,7 @@ into Execution Views such as snapshots, lifecycle rows, and traces.
 ## Contracts
 
 ```python
-from sentinelai import Contracts
+from gods_eye import Contracts
 
 Contracts.ExecutionSnapshot
 Contracts.ModelInfo
@@ -66,11 +66,11 @@ Persistence DTOs such as lifecycle/trace rows belong to the Platform package.
 ## Optional Platform surface
 
 ```python
-from sentinelai_platform.api import create_app, router
-from sentinelai_platform.event_subscribers import register_persistence_subscribers
-from sentinelai_platform.execution_store import TracePersister
-from sentinelai_platform.ports.storage import StorageProvider
-from sentinelai_platform.repositories import (
+from gods_eye_platform.api import create_app, router
+from gods_eye_platform.event_subscribers import register_persistence_subscribers
+from gods_eye_platform.execution_store import TracePersister
+from gods_eye_platform.ports.storage import StorageProvider
+from gods_eye_platform.repositories import (
     ExecutionLifecycleRepository,
     ExecutionSnapshotRepository,
     TraceRepository,
@@ -94,14 +94,14 @@ Public:
 
 Auth env: `SUPABASE_URL` (required for JWKS / ES256 signing keys), optional
 `SUPABASE_JWT_SECRET` (Legacy HS256 only). Local bypass only:
-`SENTINELAI_AUTH_DISABLED=1` when neither is set. CORS via
-`SENTINELAI_DASHBOARD_ORIGINS` (allows `Authorization`).
+`GODS_EYE_AUTH_DISABLED=1` when neither is set. CORS via
+`GODS_EYE_DASHBOARD_ORIGINS` (allows `Authorization`).
 
 ## Internal implementation
 
 Do not depend on:
 
-- `sentinelai.execution.context.ExecutionContext` from customer business code;
-- repository ports inside `sentinelai.repositories`;
+- `gods_eye.execution.context.ExecutionContext` from customer business code;
+- repository ports inside `gods_eye.repositories`;
 - Alembic internals as Python APIs;
 - deprecated local `app.main` launcher from a published package.

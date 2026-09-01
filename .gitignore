@@ -33,10 +33,10 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # Local app data (paths are specific so source packages are not ignored)
-/SentinelAI/storage/
-/SentinelAI/traces/
-/SentinelAI/chroma_data/
-/SentinelAI/registry/documents.json
+/GodsEye/storage/
+/GodsEye/traces/
+/GodsEye/chroma_data/
+/GodsEye/registry/documents.json
 
 # IDE / OS
 .vscode/

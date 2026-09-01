@@ -1,6 +1,8 @@
-# SentinelAI
+# God's Eye
 
-SentinelAI is an AI observability platform with four independent products:
+Main documentation moved to the repo root: [`README.md`](../README.md).
+
+God's Eye is an AI observability platform with four independent products:
 the language-neutral Execution Protocol, the Python SDK, the optional Platform,
 and customer runtimes.
 
@@ -8,10 +10,10 @@ and customer runtimes.
 
 ```bash
 # Core SDK (Pydantic only)
-uv add sentinelai
+uv add gods_eye
 
 # Optional Platform backend (API + persistence + storage)
-uv add "sentinelai[platform]"
+uv add "gods_eye[platform]"
 
 # This repository / reference runtime
 uv sync --extra reference --extra dev
@@ -20,8 +22,8 @@ uv sync --extra reference --extra dev
 ## Minimal instrumentation
 
 ```python
-from sentinelai import Contracts, configure, execution, span
-from sentinelai.execution_stream import InMemoryExecutionStream
+from gods_eye import Contracts, configure, execution, span
+from gods_eye.execution_stream import InMemoryExecutionStream
 
 configure(
     publisher=InMemoryExecutionStream(),
@@ -43,21 +45,21 @@ execution lifecycle, tracing, event publication, and stage inference.
 Use the optional Platform to project those facts into persistence:
 
 ```python
-from sentinelai_platform.event_subscribers import register_persistence_subscribers
-from sentinelai_platform.execution_store import TracePersister
-from sentinelai_platform.persistence.postgres import (
+from gods_eye_platform.event_subscribers import register_persistence_subscribers
+from gods_eye_platform.execution_store import TracePersister
+from gods_eye_platform.persistence.postgres import (
     PostgresExecutionSnapshotRepository,
 )
 ```
 
-The SDK never imports `sentinelai_platform`, FastAPI, SQLAlchemy, Supabase, or
+The SDK never imports `gods_eye_platform`, FastAPI, SQLAlchemy, Supabase, or
 the reference runtime.
 
 ## Public API
 
-Frozen exports from `sentinelai`:
+Frozen exports from `gods_eye`:
 
-- `Sentinel`
+- `GodsEye`
 - `configure`
 - `execution`
 - `span`
@@ -70,7 +72,7 @@ See [docs/public-api.md](docs/public-api.md), [docs/architecture.md](docs/archit
 and [protocol/README.md](protocol/README.md).
 
 Replay, evaluation, analytics, and dashboard namespaces are reserved under
-`sentinelai_platform`; no engines or dashboard are implemented yet.
+`gods_eye_platform`; no engines or dashboard are implemented yet.
 
 ## Reference runtime
 
@@ -109,7 +111,7 @@ uv run uvicorn examples.reference_runtime.main:app --reload
   `examples/reference_runtime/db/migrations` (registers demo document models;
   uses the shared Platform revision chain).
 - Platform-only installs: point Alembic at
-  `sentinelai_platform/persistence/postgres/migrations`.
+  `gods_eye_platform/persistence/postgres/migrations`.
 
 Do not rewrite applied revision history. Stamp/upgrade paths are documented in
 [docs/architecture.md](docs/architecture.md).

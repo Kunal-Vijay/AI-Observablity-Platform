@@ -14,29 +14,29 @@ from examples.reference_runtime.retriever.schemas import IndexedDocument
 from examples.reference_runtime.schemas import LLMResponse
 from examples.reference_runtime.services.orchestrator import AIOrchestrator, EmptyQueryError
 from examples.reference_runtime.verifier.schemas import VerificationResult
-from sentinelai import (
+from gods_eye import (
     configure,
     get_current_execution_id,
     get_current_trace_id,
     span,
 )
-from sentinelai.contracts import (
+from gods_eye.contracts import (
     ExecutionSnapshot,
     ExecutionSummary,
     ModelInfo,
     PromptReference,
     Trace,
 )
-from sentinelai.execution_stream import (
+from gods_eye.execution_stream import (
     ExecutionCompleted,
     ExecutionEvent,
     ExecutionStarted,
     InMemoryExecutionStream,
     TraceCompleted,
 )
-from sentinelai.sdk.configure import reset_configuration
-from sentinelai_platform.event_subscribers import register_persistence_subscribers
-from sentinelai_platform.projections import ExecutionRecord
+from gods_eye.sdk.configure import reset_configuration
+from gods_eye_platform.event_subscribers import register_persistence_subscribers
+from gods_eye_platform.projections import ExecutionRecord
 
 
 class _MemoryLifecycle:

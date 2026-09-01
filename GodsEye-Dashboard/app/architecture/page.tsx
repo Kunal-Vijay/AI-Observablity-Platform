@@ -9,7 +9,7 @@ const LAYERS = [
     body: "Your agents, workflows, tools, and models — instrumented where business logic runs.",
   },
   {
-    title: "SentinelAI SDK",
+    title: "God's Eye SDK",
     body: "Lightweight decorators and span helpers that emit structured execution events.",
   },
   {
@@ -17,7 +17,7 @@ const LAYERS = [
     body: "Durable event stream carrying spans, payloads, status, and timing metadata.",
   },
   {
-    title: "SentinelAI Platform",
+    title: "God's Eye Platform",
     body: "Ingest, normalize, store, and index executions for query and analysis.",
   },
   {

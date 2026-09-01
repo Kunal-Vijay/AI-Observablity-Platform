@@ -1,11 +1,11 @@
-"""Process-wide SentinelAI instrumentation configuration."""
+"""Process-wide God's Eye instrumentation configuration."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from sentinelai.contracts import ModelInfo, PromptReference
-from sentinelai.execution_stream import ExecutionEventPublisher
+from gods_eye.contracts import ModelInfo, PromptReference
+from gods_eye.execution_stream import ExecutionEventPublisher
 
 
 @dataclass(frozen=True, slots=True)
@@ -26,7 +26,7 @@ def configure(
     model_info: ModelInfo,
     prompt_catalog: dict[str, PromptReference] | None = None,
 ) -> InstrumentationSettings:
-    """Configure SentinelAI instrumentation once at the application composition root.
+    """Configure God's Eye instrumentation once at the application composition root.
 
     Customer business logic should not call this. The composition root wires the
     execution stream and default model/prompt metadata before handling requests.
@@ -45,7 +45,7 @@ def get_settings() -> InstrumentationSettings:
     """Return the active instrumentation settings."""
     if _settings is None:
         raise RuntimeError(
-            "SentinelAI is not configured. Call sentinelai.configure(...) "
+            "God's Eye is not configured. Call gods_eye.configure(...) "
             "once in your application composition root before observing executions."
         )
     return _settings

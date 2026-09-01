@@ -8,9 +8,9 @@ from uuid import UUID
 
 from fastapi import APIRouter, Query, Request
 
-from sentinelai.contracts import ExecutionSnapshot, ExecutionSummary
-from sentinelai_platform.api.deps import get_execution_repository, get_trace_persister
-from sentinelai_platform.api.errors import ExecutionNotFoundError, TraceNotFoundError
+from gods_eye.contracts import ExecutionSnapshot, ExecutionSummary
+from gods_eye_platform.api.deps import get_execution_repository, get_trace_persister
+from gods_eye_platform.api.errors import ExecutionNotFoundError, TraceNotFoundError
 
 router = APIRouter()
 

@@ -2,8 +2,8 @@ from contextvars import ContextVar, Token
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from sentinelai.contracts import Trace
-    from sentinelai.tracing.tracer import Tracer
+    from gods_eye.contracts import Trace
+    from gods_eye.tracing.tracer import Tracer
 
 _current_tracer: ContextVar["Tracer | None"] = ContextVar(
     "current_tracer",

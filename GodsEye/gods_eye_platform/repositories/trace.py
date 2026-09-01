@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from uuid import UUID
 
-from sentinelai_platform.projections import SpanRecord, TraceRecord
+from gods_eye_platform.projections import SpanRecord, TraceRecord
 
 
 class TraceRepository(ABC):

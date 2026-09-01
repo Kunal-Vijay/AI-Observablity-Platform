@@ -4,8 +4,8 @@ from contextlib import contextmanager
 from datetime import UTC, datetime
 from typing import Any
 
-from sentinelai.contracts import Span, SpanStatus, Trace
-from sentinelai.tracing.context import TraceContext
+from gods_eye.contracts import Span, SpanStatus, Trace
+from gods_eye.tracing.context import TraceContext
 
 
 class Tracer:

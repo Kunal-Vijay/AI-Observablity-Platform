@@ -5,12 +5,12 @@ from __future__ import annotations
 from typing import Any
 from uuid import UUID
 
-from sentinelai.contracts import Trace
-from sentinelai_platform.api.errors import TraceNotFoundError
-from sentinelai_platform.api.schemas import ExecutionTraceView, SpanView
-from sentinelai_platform.execution_store.trace_persister import TracePersister
-from sentinelai_platform.repositories.execution import ExecutionSnapshotRepository
-from sentinelai_platform.repositories.trace import TraceRepository
+from gods_eye.contracts import Trace
+from gods_eye_platform.api.errors import TraceNotFoundError
+from gods_eye_platform.api.schemas import ExecutionTraceView, SpanView
+from gods_eye_platform.execution_store.trace_persister import TracePersister
+from gods_eye_platform.repositories.execution import ExecutionSnapshotRepository
+from gods_eye_platform.repositories.trace import TraceRepository
 
 
 async def resolve_trace_id_for_execution(

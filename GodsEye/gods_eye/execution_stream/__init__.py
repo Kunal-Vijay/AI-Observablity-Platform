@@ -1,6 +1,6 @@
 """Immutable execution facts and their publication stream."""
 
-from sentinelai.execution_stream.event import (
+from gods_eye.execution_stream.event import (
     AnalysisCompleted,
     ExecutionCancelled,
     ExecutionCompleted,
@@ -13,9 +13,9 @@ from sentinelai.execution_stream.event import (
     TraceCreated,
     VerificationCompleted,
 )
-from sentinelai.execution_stream.publisher import ExecutionEventPublisher
-from sentinelai.execution_stream.stream import ExecutionStream, InMemoryExecutionStream
-from sentinelai.execution_stream.subscriber import ExecutionEventSubscriber
+from gods_eye.execution_stream.publisher import ExecutionEventPublisher
+from gods_eye.execution_stream.stream import ExecutionStream, InMemoryExecutionStream
+from gods_eye.execution_stream.subscriber import ExecutionEventSubscriber
 
 __all__ = [
     "AnalysisCompleted",

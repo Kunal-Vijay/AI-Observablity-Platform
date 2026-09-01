@@ -2,7 +2,7 @@ from examples.reference_runtime.llm import LLMClient
 from examples.reference_runtime.structured import parse_structured
 from examples.reference_runtime.verifier.prompts import verification_prompt
 from examples.reference_runtime.verifier.schemas import VerificationResult
-from sentinelai import span
+from gods_eye import span
 
 
 class Verifier:

@@ -1,6 +1,6 @@
 """Public instrumentation decorator."""
 
-from sentinelai.tracing.decorators import trace_span
+from gods_eye.tracing.decorators import trace_span
 
 # Public name for customer applications. The historical decorator name remains
 # available as a compatibility alias.

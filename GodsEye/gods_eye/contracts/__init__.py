@@ -1,6 +1,6 @@
 """Language-neutral Execution Protocol contracts implemented for Python."""
 
-from sentinelai.contracts.execution import (
+from gods_eye.contracts.execution import (
     ExecutionSnapshot,
     ExecutionStatus,
     ExecutionSummary,
@@ -8,7 +8,7 @@ from sentinelai.contracts.execution import (
     PromptReference,
     TerminalExecutionStatus,
 )
-from sentinelai.contracts.tracing import (
+from gods_eye.contracts.tracing import (
     Span,
     SpanStatus,
     Trace,

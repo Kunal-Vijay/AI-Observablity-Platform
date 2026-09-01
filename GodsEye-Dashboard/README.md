@@ -1,8 +1,10 @@
-# SentinelAI Dashboard
+# God's Eye Dashboard
 
-Independent web dashboard for the SentinelAI Platform.
+Main documentation moved to the repo root: [`README.md`](../README.md).
 
-This repository is a **separate product** from the SentinelAI backend. It communicates with the Platform exclusively over HTTP — there is **no filesystem dependency** on the backend repository.
+Independent web dashboard for the God's Eye Platform.
+
+This repository is a **separate product** from the God's Eye backend. It communicates with the Platform exclusively over HTTP — there is **no filesystem dependency** on the backend repository.
 
 ## Stack
 
@@ -32,9 +34,9 @@ Middleware redirects unauthenticated `/dashboard/*` traffic to `/sign-in?next=�
 
 ```bash
 cd /path/to/TracerAI
-export SENTINELAI_DASHBOARD_ORIGINS=http://localhost:3000
+export GODS_EYE_DASHBOARD_ORIGINS=http://localhost:3000
 # Local/dev only — do not use in production:
-export SENTINELAI_AUTH_DISABLED=1
+export GODS_EYE_AUTH_DISABLED=1
 # Or configure real JWT verification:
 # export SUPABASE_URL=https://YOUR_PROJECT.supabase.co
 # export SUPABASE_JWT_SECRET=your-jwt-secret
@@ -60,7 +62,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Variable | Description |
 |----------|-------------|
-| `NEXT_PUBLIC_SENTINELAI_API_URL` | Platform base URL |
+| `NEXT_PUBLIC_GODS_EYE_API_URL` | Platform base URL |
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon **or** publishable key |
 | `NEXT_PUBLIC_GITHUB_URL` | Optional override for landing GitHub CTA |
@@ -73,8 +75,8 @@ Open [http://localhost:3000](http://localhost:3000).
 |----------|-------------|
 | `SUPABASE_URL` | Used to validate JWT issuer (`{url}/auth/v1`) |
 | `SUPABASE_JWT_SECRET` | HS256 secret from Supabase project settings |
-| `SENTINELAI_AUTH_DISABLED` | `1` to bypass JWT when secret unset (local only) |
-| `SENTINELAI_DASHBOARD_ORIGINS` | Comma-separated dashboard origins for CORS |
+| `GODS_EYE_AUTH_DISABLED` | `1` to bypass JWT when secret unset (local only) |
+| `GODS_EYE_DASHBOARD_ORIGINS` | Comma-separated dashboard origins for CORS |
 
 ## Auth model
 
@@ -117,7 +119,7 @@ OAuth callback: `/auth/callback` exchanges the code for a session, then redirect
 ## CORS
 
 ```bash
-SENTINELAI_DASHBOARD_ORIGINS=http://localhost:3000,https://your-dashboard.vercel.app
+GODS_EYE_DASHBOARD_ORIGINS=http://localhost:3000,https://your-dashboard.vercel.app
 ```
 
 Platform allows `Authorization` and `Content-Type`, methods `GET` / `POST` / `OPTIONS`.
@@ -126,13 +128,13 @@ Platform allows `Authorization` and `Content-Type`, methods `GET` / `POST` / `OP
 
 1. Import this GitHub repository in Vercel (Next.js defaults).
 2. Set:
-   - `NEXT_PUBLIC_SENTINELAI_API_URL`
+   - `NEXT_PUBLIC_GODS_EYE_API_URL`
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - optional `NEXT_PUBLIC_GITHUB_URL`
 3. Deploy.
-4. Add the Vercel origin to Platform `SENTINELAI_DASHBOARD_ORIGINS`.
-5. Configure Platform `SUPABASE_URL` + `SUPABASE_JWT_SECRET` (leave `SENTINELAI_AUTH_DISABLED` unset).
+4. Add the Vercel origin to Platform `GODS_EYE_DASHBOARD_ORIGINS`.
+5. Configure Platform `SUPABASE_URL` + `SUPABASE_JWT_SECRET` (leave `GODS_EYE_AUTH_DISABLED` unset).
 6. Add the production URL + `/auth/callback` to Supabase redirect allowlist.
 
 ## Trace explorer

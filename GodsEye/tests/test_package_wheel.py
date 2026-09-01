@@ -47,10 +47,10 @@ def test_wheel_contains_sdk_and_optional_platform_only(tmp_path: Path) -> None:
     wheel = _build_wheel(dist)
     with zipfile.ZipFile(wheel) as archive:
         names = archive.namelist()
-    assert any(name.startswith("sentinelai/") for name in names)
-    assert any(name.startswith("sentinelai_platform/") for name in names)
-    assert "sentinelai_platform/storage/local_provider.py" in names
-    assert "sentinelai_platform/storage/supabase_provider.py" in names
+    assert any(name.startswith("gods_eye/") for name in names)
+    assert any(name.startswith("gods_eye_platform/") for name in names)
+    assert "gods_eye_platform/storage/local_provider.py" in names
+    assert "gods_eye_platform/storage/supabase_provider.py" in names
     assert not any(name.startswith("examples/") for name in names)
     assert not any(name.startswith("app/") for name in names)
 
@@ -83,20 +83,20 @@ def test_core_wheel_install_imports_public_api(tmp_path: Path) -> None:
             str(venv / "bin" / "python"),
             "-c",
             "import importlib.util; "
-            "import sentinelai; "
+            "import gods_eye; "
             "import sys; "
-            "from sentinelai import ("
-            "Sentinel, configure, execution, span, Contracts, "
+            "from gods_eye import ("
+            "GodsEye, configure, execution, span, Contracts, "
             "ExecutionStream, Plugin, get_current_execution_id, "
             "get_current_trace_id, get_current_execution_latency_ms"
             "); "
-            "from sentinelai.execution_stream import "
+            "from gods_eye.execution_stream import "
             "ExecutionStarted, InMemoryExecutionStream; "
-            "assert 'sentinelai_platform' not in sys.modules; "
+            "assert 'gods_eye_platform' not in sys.modules; "
             "assert importlib.util.find_spec('fastapi') is None; "
             "assert importlib.util.find_spec('sqlalchemy') is None; "
             "assert importlib.util.find_spec('supabase') is None; "
-            "print(sentinelai.__version__)",
+            "print(gods_eye.__version__)",
         ],
         check=False,
         capture_output=True,

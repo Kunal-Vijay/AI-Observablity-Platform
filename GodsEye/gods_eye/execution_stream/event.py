@@ -12,7 +12,7 @@ from pydantic import (
     field_validator,
 )
 
-from sentinelai.execution_stream.schemas import (
+from gods_eye.execution_stream.schemas import (
     EventMetadata,
     EventPayload,
     freeze_mapping,

@@ -1,4 +1,4 @@
-"""Alembic env for SentinelAI Platform Postgres installations.
+"""Alembic env for God's Eye Platform Postgres installations.
 
 This env intentionally does **not** import the reference runtime. Fresh customer
 databases that only need Platform tables can point Alembic here. Deployments that
@@ -18,16 +18,16 @@ from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
-from sentinelai_platform.persistence.postgres.base import Base
-from sentinelai_platform.persistence.postgres.models_execution import (  # noqa: F401
+from gods_eye_platform.persistence.postgres.base import Base
+from gods_eye_platform.persistence.postgres.models_execution import (  # noqa: F401
     ExecutionModel,
 )
-from sentinelai_platform.persistence.postgres.models_snapshot import (  # noqa: F401
+from gods_eye_platform.persistence.postgres.models_snapshot import (  # noqa: F401
     ExecutionSnapshotModel,
 )
-from sentinelai_platform.persistence.postgres.models_span import SpanModel  # noqa: F401
-from sentinelai_platform.persistence.postgres.models_trace import TraceModel  # noqa: F401
-from sentinelai_platform.persistence.postgres.url import prepare_database_url
+from gods_eye_platform.persistence.postgres.models_span import SpanModel  # noqa: F401
+from gods_eye_platform.persistence.postgres.models_trace import TraceModel  # noqa: F401
+from gods_eye_platform.persistence.postgres.url import prepare_database_url
 
 config = context.config
 if config.config_file_name is not None:

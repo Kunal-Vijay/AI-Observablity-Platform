@@ -4,10 +4,10 @@ from sqlalchemy import select
 from sqlalchemy.exc import DBAPIError, InterfaceError, OperationalError
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from sentinelai_platform.persistence.postgres.models_span import SpanModel
-from sentinelai_platform.persistence.postgres.models_trace import TraceModel
-from sentinelai_platform.projections import SpanRecord, TraceRecord
-from sentinelai_platform.repositories.trace import TraceRepository
+from gods_eye_platform.persistence.postgres.models_span import SpanModel
+from gods_eye_platform.persistence.postgres.models_trace import TraceModel
+from gods_eye_platform.projections import SpanRecord, TraceRecord
+from gods_eye_platform.repositories.trace import TraceRepository
 
 _STALE_CONNECTION_MARKERS = (
     "connection was closed",

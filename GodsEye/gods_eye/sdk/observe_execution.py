@@ -1,4 +1,4 @@
-"""Public decorator that owns the SentinelAI execution lifecycle."""
+"""Public decorator that owns the God's Eye execution lifecycle."""
 
 from __future__ import annotations
 
@@ -10,8 +10,8 @@ from collections.abc import Callable, Mapping, Sequence
 from datetime import UTC, datetime
 from typing import Any, ParamSpec, TypeVar, cast
 
-from sentinelai.contracts import TerminalExecutionStatus
-from sentinelai.execution.active import (
+from gods_eye.contracts import TerminalExecutionStatus
+from gods_eye.execution.active import (
     get_active_execution,
     infer_boundary_result,
     record_metadata,
@@ -19,18 +19,18 @@ from sentinelai.execution.active import (
     select_prompt_references,
     set_active_execution,
 )
-from sentinelai.execution.context import ExecutionContext
-from sentinelai.sdk.configure import get_settings
-from sentinelai.sdk.correlation import (
+from gods_eye.execution.context import ExecutionContext
+from gods_eye.sdk.configure import get_settings
+from gods_eye.sdk.correlation import (
     _clear_completed_correlation,
     _set_completed_correlation,
 )
-from sentinelai.sdk.metadata import ExecutionMetadata, ObservedResult
+from gods_eye.sdk.metadata import ExecutionMetadata, ObservedResult
 
 P = ParamSpec("P")
 R = TypeVar("R")
 
-logger = logging.getLogger("sentinelai.sdk")
+logger = logging.getLogger("gods_eye.sdk")
 
 QueryResolver = str | Callable[..., str]
 MetadataResolver = Mapping[str, Any] | Callable[..., Mapping[str, Any]]
@@ -50,7 +50,7 @@ def observe_execution(
 ) -> Callable[[Callable[P, R]], Callable[P, R]]:
     """Observe one customer execution boundary.
 
-    The decorated function should contain only business logic. SentinelAI creates
+    The decorated function should contain only business logic. God's Eye creates
     the execution, starts tracing, publishes lifecycle events, and finalizes the
     terminal snapshot/events automatically.
     """

@@ -2,10 +2,10 @@ import json
 from datetime import UTC, datetime
 from uuid import UUID
 
-from sentinelai.contracts import Trace
-from sentinelai_platform.ports.storage import StorageProvider
-from sentinelai_platform.projections import SpanRecord, TraceRecord
-from sentinelai_platform.repositories.trace import TraceRepository
+from gods_eye.contracts import Trace
+from gods_eye_platform.ports.storage import StorageProvider
+from gods_eye_platform.projections import SpanRecord, TraceRecord
+from gods_eye_platform.repositories.trace import TraceRepository
 
 
 class TracePersister:

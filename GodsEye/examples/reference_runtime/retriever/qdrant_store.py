@@ -5,7 +5,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.http import models as qmodels
 
 from examples.reference_runtime.retriever.schemas import DocumentChunk, SearchResult
-from sentinelai import span
+from gods_eye import span
 
 DEFAULT_COLLECTION = "documents"
 

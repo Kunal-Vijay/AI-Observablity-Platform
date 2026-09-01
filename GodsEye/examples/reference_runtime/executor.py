@@ -12,7 +12,7 @@ from examples.reference_runtime.retriever.retriever import (
 )
 from examples.reference_runtime.retriever.schemas import RetrieverResult
 from examples.reference_runtime.schemas import InvoiceExtraction, LLMResponse
-from sentinelai import span
+from gods_eye import span
 
 
 class ExecutionResult(BaseModel):

@@ -6,7 +6,7 @@ from collections.abc import Mapping, Sequence
 from contextvars import ContextVar, Token
 from typing import Any
 
-from sentinelai.contracts import PromptReference
+from gods_eye.contracts import PromptReference
 
 _active_execution: ContextVar[Any] = ContextVar(
     "active_execution",

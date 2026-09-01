@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SentinelAI Dashboard",
-  description: "AI execution observability dashboard for SentinelAI Platform",
+  title: "God's Eye Dashboard",
+  description: "AI execution observability dashboard for God's Eye Platform",
 };
 
 export default function RootLayout({

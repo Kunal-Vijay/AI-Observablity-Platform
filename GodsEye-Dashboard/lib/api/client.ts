@@ -16,11 +16,11 @@ export class PlatformApiError extends Error {
 export type ApiAuthMode = "required" | "none";
 
 function getBaseUrl(): string {
-  const raw = process.env.NEXT_PUBLIC_SENTINELAI_API_URL;
+  const raw = process.env.NEXT_PUBLIC_GODS_EYE_API_URL;
   if (!raw || !raw.trim()) {
     throw new PlatformApiError(
       0,
-      "NEXT_PUBLIC_SENTINELAI_API_URL is not configured.",
+      "NEXT_PUBLIC_GODS_EYE_API_URL is not configured.",
     );
   }
   return raw.replace(/\/$/, "");
@@ -114,7 +114,7 @@ async function apiRequest<T>(
   } catch {
     throw new PlatformApiError(
       0,
-      "Unable to reach the SentinelAI Platform. Check NEXT_PUBLIC_SENTINELAI_API_URL and that the backend is running.",
+      "Unable to reach the God's Eye Platform. Check NEXT_PUBLIC_GODS_EYE_API_URL and that the backend is running.",
     );
   }
 

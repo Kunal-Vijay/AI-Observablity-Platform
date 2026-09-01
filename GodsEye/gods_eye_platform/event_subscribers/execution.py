@@ -3,16 +3,16 @@
 from datetime import UTC, datetime
 from typing import Any
 
-from sentinelai.contracts import ExecutionSnapshot
-from sentinelai.execution_stream import (
+from gods_eye.contracts import ExecutionSnapshot
+from gods_eye.execution_stream import (
     ExecutionCancelled,
     ExecutionCompleted,
     ExecutionEvent,
     ExecutionFailed,
     ExecutionStarted,
 )
-from sentinelai_platform.projections import ExecutionRecord
-from sentinelai_platform.repositories.execution import (
+from gods_eye_platform.projections import ExecutionRecord
+from gods_eye_platform.repositories.execution import (
     ExecutionLifecycleRepository,
     ExecutionSnapshotRepository,
 )

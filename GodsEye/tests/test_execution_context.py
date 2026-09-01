@@ -6,9 +6,9 @@ from uuid import uuid4
 import pytest
 from pydantic import ValidationError
 
-from sentinelai import ExecutionContext, ExecutionSnapshot
-from sentinelai.contracts import ModelInfo
-from sentinelai.execution_stream import (
+from gods_eye import ExecutionContext, ExecutionSnapshot
+from gods_eye.contracts import ModelInfo
+from gods_eye.execution_stream import (
     ExecutionEvent,
     ExecutionFailed,
     InMemoryExecutionStream,

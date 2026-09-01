@@ -169,7 +169,7 @@ export function LandingPage() {
         <p className="mt-2 text-lg font-medium tracking-tight text-foreground">
           Instrument in minutes.
         </p>
-        <pre className="mt-5 overflow-x-auto rounded-md border border-border bg-card px-4 py-4 font-mono text-[12px] leading-relaxed text-foreground/90">{`from sentinelai import execution, span
+        <pre className="mt-5 overflow-x-auto rounded-md border border-border bg-card px-4 py-4 font-mono text-[12px] leading-relaxed text-foreground/90">{`from gods_eye import execution, span
 
 @execution("support-agent")
 async def run(query: str):
@@ -181,7 +181,7 @@ async def plan(query: str):
     ...
 `}</pre>
         <p className="mt-3 text-sm text-muted-foreground">
-          Annotate business methods. SentinelAI captures the execution graph
+          Annotate business methods. God's Eye captures the execution graph
           automatically.
         </p>
       </section>

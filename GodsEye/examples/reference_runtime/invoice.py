@@ -2,7 +2,7 @@ from examples.reference_runtime.llm import LLMClient
 from examples.reference_runtime.prompts import extract_invoice_prompt
 from examples.reference_runtime.schemas import InvoiceExtraction
 from examples.reference_runtime.structured import parse_structured
-from sentinelai import span
+from gods_eye import span
 
 
 class InvoiceExtractor:

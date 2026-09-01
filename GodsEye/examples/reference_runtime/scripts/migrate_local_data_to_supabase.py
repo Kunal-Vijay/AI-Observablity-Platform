@@ -14,15 +14,15 @@ from pathlib import Path
 from uuid import UUID
 
 from examples.reference_runtime.config import load_settings
-from sentinelai.tracing import Trace
-from sentinelai_platform.execution_store import TracePersister
-from sentinelai_platform.persistence.postgres import (
+from gods_eye.tracing import Trace
+from gods_eye_platform.execution_store import TracePersister
+from gods_eye_platform.persistence.postgres import (
     PostgresExecutionLifecycleRepository,
     PostgresTraceRepository,
     create_engine,
     create_session_factory,
 )
-from sentinelai_platform.storage.supabase_provider import SupabaseStorageProvider
+from gods_eye_platform.storage.supabase_provider import SupabaseStorageProvider
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCUMENTS_DIR = ROOT / "storage"

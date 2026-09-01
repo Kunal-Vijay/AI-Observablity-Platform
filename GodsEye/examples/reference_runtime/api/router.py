@@ -12,7 +12,7 @@ from examples.reference_runtime.api.schemas import (
 )
 from examples.reference_runtime.errors import LLMError
 from examples.reference_runtime.retriever.schemas import IndexedDocument
-from sentinelai import (
+from gods_eye import (
     get_current_execution_id,
     get_current_execution_latency_ms,
     get_current_trace_id,

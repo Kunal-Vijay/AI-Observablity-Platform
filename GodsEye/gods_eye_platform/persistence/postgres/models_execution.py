@@ -5,7 +5,7 @@ from sqlalchemy import DateTime, Float, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
-from sentinelai_platform.persistence.postgres.base import Base
+from gods_eye_platform.persistence.postgres.base import Base
 
 
 class ExecutionModel(Base):

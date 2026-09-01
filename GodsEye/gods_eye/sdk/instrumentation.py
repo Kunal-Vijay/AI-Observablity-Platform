@@ -5,14 +5,14 @@ from __future__ import annotations
 from collections.abc import Callable
 from typing import Any, ParamSpec, TypeVar
 
-from sentinelai.sdk.configure import configure
-from sentinelai.sdk.correlation import (
+from gods_eye.sdk.configure import configure
+from gods_eye.sdk.correlation import (
     get_current_execution_id,
     get_current_execution_latency_ms,
     get_current_trace_id,
 )
-from sentinelai.sdk.observe_execution import observe_execution
-from sentinelai.tracing.decorators import trace_span
+from gods_eye.sdk.observe_execution import observe_execution
+from gods_eye.tracing.decorators import trace_span
 
 P = ParamSpec("P")
 R = TypeVar("R")
@@ -34,8 +34,8 @@ def span(
     return trace_span(name, **options)
 
 
-class Sentinel:
-    """Small facade over SentinelAI's process-wide instrumentation API."""
+class GodsEye:
+    """Small facade over God's Eye's process-wide instrumentation API."""
 
     configure = staticmethod(configure)
     execution = staticmethod(execution)
@@ -47,4 +47,4 @@ class Sentinel:
     )
 
 
-__all__ = ["Sentinel", "execution", "span"]
+__all__ = ["GodsEye", "execution", "span"]

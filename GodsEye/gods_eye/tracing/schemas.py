@@ -1,9 +1,9 @@
 """Deprecated compatibility imports.
 
-Import shared DTOs from :mod:`sentinelai.contracts` instead.
+Import shared DTOs from :mod:`gods_eye.contracts` instead.
 """
 
-from sentinelai.contracts.tracing import (
+from gods_eye.contracts.tracing import (
     Span,
     SpanRecord,
     SpanStatus,

@@ -1,19 +1,19 @@
-from sentinelai.contracts import (
+from gods_eye.contracts import (
     ExecutionSnapshot,
     ExecutionStatus,
     ExecutionSummary,
     ModelInfo,
     PromptReference,
 )
-from sentinelai.contracts.execution import (
+from gods_eye.contracts.execution import (
     CURRENT_REPOSITORY_VERSION,
     SnapshotCreationMetrics,
 )
-from sentinelai.execution.active import (
+from gods_eye.execution.active import (
     get_active_execution,
     record_metadata,
 )
-from sentinelai.execution.context import (
+from gods_eye.execution.context import (
     ExecutionContext,
     prompt_reference,
 )

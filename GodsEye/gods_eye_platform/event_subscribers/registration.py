@@ -1,6 +1,6 @@
 """Register Platform persistence consumers on an execution stream."""
 
-from sentinelai.execution_stream import (
+from gods_eye.execution_stream import (
     ExecutionCancelled,
     ExecutionCompleted,
     ExecutionEventSubscriber,
@@ -9,15 +9,15 @@ from sentinelai.execution_stream import (
     ExecutionStream,
     TraceCompleted,
 )
-from sentinelai_platform.event_subscribers.execution import (
+from gods_eye_platform.event_subscribers.execution import (
     ExecutionCancelledSubscriber,
     ExecutionCompletedSubscriber,
     ExecutionFailedSubscriber,
     ExecutionStartedSubscriber,
 )
-from sentinelai_platform.event_subscribers.trace import TraceCompletedSubscriber
-from sentinelai_platform.execution_store import TracePersister
-from sentinelai_platform.repositories.execution import (
+from gods_eye_platform.event_subscribers.trace import TraceCompletedSubscriber
+from gods_eye_platform.execution_store import TracePersister
+from gods_eye_platform.repositories.execution import (
     ExecutionLifecycleRepository,
     ExecutionSnapshotRepository,
 )

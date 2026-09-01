@@ -31,33 +31,33 @@ from examples.reference_runtime.retriever.retriever import (
 from examples.reference_runtime.services.orchestrator import AIOrchestrator
 from examples.reference_runtime.verifier.prompts import verification_prompt
 from examples.reference_runtime.verifier.verifier import Verifier
-from sentinelai import Contracts, configure
-from sentinelai.execution_stream import InMemoryExecutionStream
-from sentinelai_platform.api import (
+from gods_eye import Contracts, configure
+from gods_eye.execution_stream import InMemoryExecutionStream
+from gods_eye_platform.api import (
     configure_cors,
 )
-from sentinelai_platform.api import (
+from gods_eye_platform.api import (
     demo_router as platform_demo_router,
 )
-from sentinelai_platform.api import (
+from gods_eye_platform.api import (
     register_exception_handlers as register_platform_exception_handlers,
 )
-from sentinelai_platform.api import (
+from gods_eye_platform.api import (
     v1_router as platform_v1_router,
 )
-from sentinelai_platform.api.router import router as platform_router
-from sentinelai_platform.event_subscribers import register_persistence_subscribers
-from sentinelai_platform.execution_store import TracePersister
-from sentinelai_platform.persistence.postgres import (
+from gods_eye_platform.api.router import router as platform_router
+from gods_eye_platform.event_subscribers import register_persistence_subscribers
+from gods_eye_platform.execution_store import TracePersister
+from gods_eye_platform.persistence.postgres import (
     PostgresExecutionLifecycleRepository,
     PostgresExecutionSnapshotRepository,
     PostgresTraceRepository,
     create_engine,
     create_session_factory,
 )
-from sentinelai_platform.ports.storage import StorageProvider
-from sentinelai_platform.storage.local_provider import LocalStorageProvider
-from sentinelai_platform.storage.supabase_provider import SupabaseStorageProvider
+from gods_eye_platform.ports.storage import StorageProvider
+from gods_eye_platform.storage.local_provider import LocalStorageProvider
+from gods_eye_platform.storage.supabase_provider import SupabaseStorageProvider
 
 load_dotenv()
 
@@ -215,8 +215,8 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
 
 app = FastAPI(
-    title="SentinelAI Reference Runtime",
-    description="Demo customer application built on the SentinelAI SDK",
+    title="God's Eye Reference Runtime",
+    description="Demo customer application built on the God's Eye SDK",
     version="2.0.0",
     lifespan=lifespan,
 )

@@ -1,6 +1,6 @@
-# SentinelAI Architecture
+# God's Eye Architecture
 
-SentinelAI is an execution-stream-driven AI observability system. The SDK
+God's Eye is an execution-stream-driven AI observability system. The SDK
 produces immutable telemetry facts; optional Platform subscribers decide what
 to persist, analyze, replay, display, search, or forward.
 
@@ -19,7 +19,7 @@ ExecutionStarted
   → ExecutionCompleted | ExecutionFailed | ExecutionCancelled
 ```
 
-`sentinelai.execution_stream` represents that history. It is a domain boundary,
+`gods_eye.execution_stream` represents that history. It is a domain boundary,
 not a Kafka/RabbitMQ abstraction. The package contains:
 
 - `event.py`: immutable event envelopes and concrete execution facts;
@@ -51,7 +51,7 @@ same fact without changing the producer.
 ## Why the SDK emits instead of persists
 
 The SDK runs inside customer applications. It cannot assume that customers use
-PostgreSQL, Supabase, FastAPI, a SentinelAI-hosted backend, or any persistence
+PostgreSQL, Supabase, FastAPI, a God's Eye-hosted backend, or any persistence
 at all.
 
 Customer integrations therefore use:
@@ -73,7 +73,7 @@ or use repository/persistence APIs from business code.
 
 ## Product boundaries
 
-### SentinelAI SDK (`sentinelai`)
+### God's Eye SDK (`gods_eye`)
 
 Active telemetry path:
 
@@ -95,7 +95,7 @@ Repository/storage protocol exports remain temporarily for public import
 compatibility, but execution code no longer imports or invokes them. They are
 scheduled for removal in the next major API version.
 
-### SentinelAI Platform (`sentinelai_platform`)
+### God's Eye Platform (`gods_eye_platform`)
 
 The optional backend consumes the SDK stream:
 
@@ -126,7 +126,7 @@ projections.
 
 ```mermaid
 flowchart TD
-  Runtime[Customer or Reference Runtime] --> SDK[SentinelAI SDK]
+  Runtime[Customer or Reference Runtime] --> SDK[God's Eye SDK]
   SDK --> Stream[Execution Stream]
   Stream --> Subscribers[Platform Subscribers]
   Subscribers --> ExecutionStore[Execution Store]
@@ -164,11 +164,11 @@ existing runtime behavior when object storage is unavailable.
 OpenTelemetry SDKs produce telemetry signals without deciding which vendor,
 database, or backend owns them. Exporters and collectors consume those signals.
 
-SentinelAI follows the same separation for AI execution intelligence:
+God's Eye follows the same separation for AI execution intelligence:
 
 ```text
-OpenTelemetry signal  ≈ SentinelAI ExecutionEvent
-OTel SDK               ≈ SentinelAI SDK
+OpenTelemetry signal  ≈ God's Eye ExecutionEvent
+OTel SDK               ≈ God's Eye SDK
 Exporter/collector     ≈ Platform subscriber
 Backend projection     ≈ execution, trace, analytics, replay, dashboard store
 ```
@@ -192,19 +192,19 @@ implementations and Platform subscriber policy—not the SDK domain model.
 No schema migration accompanies this refactor. The historical Alembic chain
 remains under:
 
-`sentinelai_platform/persistence/postgres/migrations/versions`
+`gods_eye_platform/persistence/postgres/migrations/versions`
 
 Revision IDs remain `0001_initial`, `0002_execution_snapshots`, and
 `0003_document_ownership_note`. Snapshot insertion remains append-only, and
 trace rows are still flushed before span rows.
-# SentinelAI Architecture
+# God's Eye Architecture
 
-SentinelAI is organized as three products in one repository. This is a package
+God's Eye is organized as three products in one repository. This is a package
 boundary, not a microservice boundary.
 
 ## Products
 
-### SentinelAI SDK (`sentinelai`)
+### God's Eye SDK (`gods_eye`)
 
 The installable core used inside customer applications:
 
@@ -219,7 +219,7 @@ The SDK has one required dependency: Pydantic. It has no HTTP framework,
 database ORM, storage client, vector database, dashboard, or customer runtime
 knowledge.
 
-### SentinelAI Platform (`sentinelai_platform`)
+### God's Eye Platform (`gods_eye_platform`)
 
 The optional backend built on the SDK:
 
@@ -250,9 +250,9 @@ remain runtime-owned.
 
 ```mermaid
 flowchart LR
-  Contracts[sentinelai.contracts]
-  SDK[SentinelAI SDK]
-  Platform[SentinelAI Platform]
+  Contracts[gods_eye.contracts]
+  SDK[God's Eye SDK]
+  Platform[God's Eye Platform]
   Runtime[Reference Runtime]
   Customer[Customer Application]
 
@@ -272,7 +272,7 @@ Qdrant, Platform, and reference-runtime dependencies.
 
 ## Contracts
 
-`sentinelai.contracts` contains shared data only:
+`gods_eye.contracts` contains shared data only:
 
 - `ExecutionSnapshot`, `ExecutionSummary`, `ExecutionRecord`;
 - `ExecutionStatus`, `TerminalExecutionStatus`;
@@ -284,7 +284,7 @@ remain JSON-shaped dictionaries so customers can use their own planner,
 retrieval, verification, and analysis models.
 
 `VerificationResult`, `RootCauseAnalysis`, and a typed `PipelineSnapshot` are
-not universal SentinelAI contracts. The first two remain in the reference
+not universal God's Eye contracts. The first two remain in the reference
 runtime; no duplicate `PipelineSnapshot` is introduced because the SDK already
 owns mutable execution lifecycle state behind `observe_execution`.
 
@@ -295,14 +295,14 @@ Stable SDK convenience imports are documented in
 interface, and plugin protocol are supported extension surfaces.
 
 Platform API factories and concrete implementations are public only from their
-`sentinelai_platform.*` namespaces. ORM model modules, migration internals, and
+`gods_eye_platform.*` namespaces. ORM model modules, migration internals, and
 private serialization/tracing helpers are internal.
 
 ## Persistence and migrations
 
 The historical revision chain is unchanged and now lives at:
 
-`sentinelai_platform/persistence/postgres/migrations/versions`
+`gods_eye_platform/persistence/postgres/migrations/versions`
 
 Revision IDs remain:
 
@@ -313,7 +313,7 @@ Revision IDs remain:
 Root `alembic.ini` uses the reference-runtime migration environment so
 `alembic check` also registers demo document models. Platform-only deployments
 can point `script_location` at
-`sentinelai_platform/persistence/postgres/migrations`.
+`gods_eye_platform/persistence/postgres/migrations`.
 
 Existing databases retain their `alembic_version` value; moving Python files
 does not require restamping. If a database schema already matches revision

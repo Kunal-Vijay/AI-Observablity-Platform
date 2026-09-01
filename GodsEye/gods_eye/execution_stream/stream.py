@@ -3,9 +3,9 @@
 import asyncio
 from typing import Protocol
 
-from sentinelai.execution_stream.event import ExecutionEvent
-from sentinelai.execution_stream.publisher import ExecutionEventPublisher
-from sentinelai.execution_stream.subscriber import ExecutionEventSubscriber
+from gods_eye.execution_stream.event import ExecutionEvent
+from gods_eye.execution_stream.publisher import ExecutionEventPublisher
+from gods_eye.execution_stream.subscriber import ExecutionEventSubscriber
 
 
 class ExecutionStream(ExecutionEventPublisher, Protocol):

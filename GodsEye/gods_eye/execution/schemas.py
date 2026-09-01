@@ -1,9 +1,9 @@
 """Deprecated compatibility imports.
 
-Import shared DTOs from :mod:`sentinelai.contracts` instead.
+Import shared DTOs from :mod:`gods_eye.contracts` instead.
 """
 
-from sentinelai.contracts.execution import (
+from gods_eye.contracts.execution import (
     CURRENT_REPOSITORY_VERSION,
     ExecutionRecord,
     ExecutionSnapshot,

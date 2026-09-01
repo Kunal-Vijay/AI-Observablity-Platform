@@ -1,6 +1,6 @@
-# SentinelAI Execution Protocol
+# God's Eye Execution Protocol
 
-The SentinelAI Execution Protocol is the canonical, language-neutral contract
+The God's Eye Execution Protocol is the canonical, language-neutral contract
 between telemetry producers and consumers.
 
 It defines execution facts, their ordering, correlation, and stream delivery
@@ -60,7 +60,7 @@ An Execution Stream transports event envelopes from producers to consumers.
 ## Products
 
 - SDKs implement this protocol and export execution facts.
-- SentinelAI Platform consumes facts and builds Execution Views.
+- God's Eye Platform consumes facts and builds Execution Views.
 - Customer runtimes use SDK instrumentation and contain only business logic.
 
 `ExecutionSnapshot` is an Execution View. It is not the protocol's primary

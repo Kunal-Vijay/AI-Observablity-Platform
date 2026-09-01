@@ -12,10 +12,10 @@ from uuid import UUID, uuid4
 from fastapi import APIRouter, HTTPException, Request, status
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-from sentinelai.contracts import ExecutionSnapshot, ModelInfo, Trace
-from sentinelai.contracts.tracing import Span
-from sentinelai_platform.api.schemas import ExecutionTraceView
-from sentinelai_platform.api.trace_views import project_trace_view
+from gods_eye.contracts import ExecutionSnapshot, ModelInfo, Trace
+from gods_eye.contracts.tracing import Span
+from gods_eye_platform.api.schemas import ExecutionTraceView
+from gods_eye_platform.api.trace_views import project_trace_view
 
 router = APIRouter(prefix="/api/v1/demo", tags=["public-demo"])
 
@@ -126,7 +126,7 @@ def _run_sandbox_demo(payload: DemoQueryRequest, request: Request) -> DemoQueryR
         query=payload.input,
         response={"answer": answer},
         trace_id=trace_id,
-        model_info=ModelInfo(provider="sentinelai-demo", model_name="sandbox-simulator"),
+        model_info=ModelInfo(provider="gods_eye-demo", model_name="sandbox-simulator"),
         created_at=started_at,
         metadata={**_SANDBOX_METADATA, "execution_name": "public_demo"},
         execution_status="completed",

@@ -9,15 +9,15 @@ from uuid import UUID
 
 from examples.reference_runtime.errors import LLMError
 from examples.reference_runtime.services.orchestrator import AIOrchestrator, RunOutcome
-from sentinelai import (
+from gods_eye import (
     ModelInfo,
     get_current_execution_id,
     get_current_execution_latency_ms,
     get_current_trace_id,
 )
-from sentinelai.contracts import ExecutionSnapshot, Trace
-from sentinelai_platform.api.demo import DemoQueryRequest, DemoQueryResult
-from sentinelai_platform.execution_store import TracePersister
+from gods_eye.contracts import ExecutionSnapshot, Trace
+from gods_eye_platform.api.demo import DemoQueryRequest, DemoQueryResult
+from gods_eye_platform.execution_store import TracePersister
 
 _SANDBOX_METADATA = {"environment": "sandbox", "source": "public_demo"}
 _Mode = Literal["chat", "rag", "invoice"]
@@ -46,7 +46,7 @@ def build_demo_query_runner(
             response={"answer": answer, "result": outcome.result},
             trace_id=UUID(str(trace_id)),
             model_info=ModelInfo(
-                provider="sentinelai-reference",
+                provider="gods_eye-reference",
                 model_name="orchestrator",
             ),
             created_at=started_at,

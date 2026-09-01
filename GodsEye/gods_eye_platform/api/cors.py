@@ -7,7 +7,7 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-DASHBOARD_ORIGINS_ENV = "SENTINELAI_DASHBOARD_ORIGINS"
+DASHBOARD_ORIGINS_ENV = "GODS_EYE_DASHBOARD_ORIGINS"
 
 
 def parse_dashboard_origins(raw: str | None = None) -> list[str]:

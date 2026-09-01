@@ -30,7 +30,7 @@ export function TopBar({
         <PlatformStatus />
         <span
           className="hidden rounded border border-border px-2 py-0.5 font-mono text-[10px] text-muted-foreground lg:inline"
-          title="Platform API host from NEXT_PUBLIC_SENTINELAI_API_URL"
+          title="Platform API host from NEXT_PUBLIC_GODS_EYE_API_URL"
         >
           {host}
         </span>

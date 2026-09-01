@@ -1,15 +1,15 @@
 """Platform consumers that project execution facts into persistence."""
 
-from sentinelai_platform.event_subscribers.execution import (
+from gods_eye_platform.event_subscribers.execution import (
     ExecutionCancelledSubscriber,
     ExecutionCompletedSubscriber,
     ExecutionFailedSubscriber,
     ExecutionStartedSubscriber,
 )
-from sentinelai_platform.event_subscribers.registration import (
+from gods_eye_platform.event_subscribers.registration import (
     register_persistence_subscribers,
 )
-from sentinelai_platform.event_subscribers.trace import TraceCompletedSubscriber
+from gods_eye_platform.event_subscribers.trace import TraceCompletedSubscriber
 
 __all__ = [
     "ExecutionCancelledSubscriber",

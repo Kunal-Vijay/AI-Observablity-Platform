@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://sentinelai.dev/protocol/execution-event.schema.json",
-  "title": "SentinelAI Execution Event",
+  "$id": "https://gods_eye.dev/protocol/execution-event.schema.json",
+  "title": "God's Eye Execution Event",
   "type": "object",
   "additionalProperties": false,
   "required": [

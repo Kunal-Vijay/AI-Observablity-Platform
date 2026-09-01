@@ -7,8 +7,8 @@ from uuid import uuid4
 
 from fastapi.testclient import TestClient
 
-from sentinelai.contracts import ExecutionSnapshot, ModelInfo, Trace
-from sentinelai_platform.api import create_app
+from gods_eye.contracts import ExecutionSnapshot, ModelInfo, Trace
+from gods_eye_platform.api import create_app
 
 
 def _client() -> TestClient:
@@ -66,8 +66,8 @@ def test_demo_uses_injected_runner_when_configured() -> None:
         from datetime import UTC, datetime
         from uuid import uuid4
 
-        from sentinelai.contracts import ExecutionSnapshot, ModelInfo, Trace
-        from sentinelai_platform.api.demo import DemoQueryResult
+        from gods_eye.contracts import ExecutionSnapshot, ModelInfo, Trace
+        from gods_eye_platform.api.demo import DemoQueryResult
 
         execution_id = uuid4()
         started = datetime.now(UTC)

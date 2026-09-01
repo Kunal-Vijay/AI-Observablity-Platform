@@ -21,16 +21,16 @@ from examples.reference_runtime.db.models import (  # noqa: F401
     DocumentChunkModel,
     DocumentModel,
 )
-from sentinelai_platform.persistence.postgres.base import Base
-from sentinelai_platform.persistence.postgres.models_execution import (  # noqa: F401
+from gods_eye_platform.persistence.postgres.base import Base
+from gods_eye_platform.persistence.postgres.models_execution import (  # noqa: F401
     ExecutionModel,
 )
-from sentinelai_platform.persistence.postgres.models_snapshot import (  # noqa: F401
+from gods_eye_platform.persistence.postgres.models_snapshot import (  # noqa: F401
     ExecutionSnapshotModel,
 )
-from sentinelai_platform.persistence.postgres.models_span import SpanModel  # noqa: F401
-from sentinelai_platform.persistence.postgres.models_trace import TraceModel  # noqa: F401
-from sentinelai_platform.persistence.postgres.url import prepare_database_url
+from gods_eye_platform.persistence.postgres.models_span import SpanModel  # noqa: F401
+from gods_eye_platform.persistence.postgres.models_trace import TraceModel  # noqa: F401
+from gods_eye_platform.persistence.postgres.url import prepare_database_url
 
 config = context.config
 if config.config_file_name is not None:
@@ -39,7 +39,7 @@ if config.config_file_name is not None:
 # Shared revision files live with the Platform package.
 _PLATFORM_VERSIONS = (
     Path(__file__).resolve().parents[4]
-    / "sentinelai_platform"
+    / "gods_eye_platform"
     / "persistence"
     / "postgres"
     / "migrations"

@@ -10,26 +10,26 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from sentinelai.contracts import (
+from gods_eye.contracts import (
     ExecutionSnapshot,
     ExecutionSummary,
     ModelInfo,
     Trace,
 )
-from sentinelai.contracts.tracing import Span
-from sentinelai_platform.api import create_app, parse_dashboard_origins
-from sentinelai_platform.api.errors import InvalidFilterError
-from sentinelai_platform.api.schemas import ExecutionListItem
-from sentinelai_platform.api.trace_views import project_trace_view
-from sentinelai_platform.api.v1 import _validate_list_filters
-from sentinelai_platform.projections import TraceRecord
+from gods_eye.contracts.tracing import Span
+from gods_eye_platform.api import create_app, parse_dashboard_origins
+from gods_eye_platform.api.errors import InvalidFilterError
+from gods_eye_platform.api.schemas import ExecutionListItem
+from gods_eye_platform.api.trace_views import project_trace_view
+from gods_eye_platform.api.v1 import _validate_list_filters
+from gods_eye_platform.projections import TraceRecord
 
 
 @pytest.fixture(autouse=True)
 def disable_platform_auth(monkeypatch: pytest.MonkeyPatch) -> None:
     """Dashboard repository tests exercise API behavior, not JWT validation."""
     monkeypatch.delenv("SUPABASE_JWT_SECRET", raising=False)
-    monkeypatch.setenv("SENTINELAI_AUTH_DISABLED", "1")
+    monkeypatch.setenv("GODS_EYE_AUTH_DISABLED", "1")
 
 
 def _snapshot(

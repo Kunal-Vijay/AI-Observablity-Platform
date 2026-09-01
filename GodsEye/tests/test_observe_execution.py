@@ -7,15 +7,15 @@ from uuid import UUID
 import pytest
 from pydantic import BaseModel
 
-from sentinelai import (
+from gods_eye import (
     configure,
     execution,
     get_current_execution_id,
     get_current_trace_id,
     span,
 )
-from sentinelai.contracts import ModelInfo, PromptReference
-from sentinelai.execution_stream import (
+from gods_eye.contracts import ModelInfo, PromptReference
+from gods_eye.execution_stream import (
     ExecutionCancelled,
     ExecutionCompleted,
     ExecutionEvent,
@@ -24,7 +24,7 @@ from sentinelai.execution_stream import (
     InMemoryExecutionStream,
     TraceCompleted,
 )
-from sentinelai.sdk.configure import reset_configuration
+from gods_eye.sdk.configure import reset_configuration
 
 
 @pytest.fixture(autouse=True)
@@ -233,7 +233,7 @@ async def test_nested_executions_isolate_contextvars() -> None:
 
     @execution("inner")
     async def inner(query: str) -> str:
-        from sentinelai.execution.active import get_active_execution
+        from gods_eye.execution.active import get_active_execution
 
         context = get_active_execution()
         assert context is not None
@@ -242,7 +242,7 @@ async def test_nested_executions_isolate_contextvars() -> None:
 
     @execution("outer")
     async def outer(query: str) -> str:
-        from sentinelai.execution.active import get_active_execution
+        from gods_eye.execution.active import get_active_execution
 
         context = get_active_execution()
         assert context is not None

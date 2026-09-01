@@ -12,7 +12,7 @@ from examples.reference_runtime.retriever.schemas import (
     RetrieverResult,
     SearchResult,
 )
-from sentinelai import span
+from gods_eye import span
 
 
 class SupportsVectorStore(Protocol):

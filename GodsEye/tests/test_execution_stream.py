@@ -6,7 +6,7 @@ from uuid import uuid4
 import pytest
 from pydantic import ValidationError
 
-from sentinelai.execution_stream import (
+from gods_eye.execution_stream import (
     AnalysisCompleted,
     ExecutionCancelled,
     ExecutionCompleted,

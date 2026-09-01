@@ -2,7 +2,7 @@
 
 from typing import Protocol
 
-from sentinelai.execution_stream.event import ExecutionEvent
+from gods_eye.execution_stream.event import ExecutionEvent
 
 
 class ExecutionEventSubscriber(Protocol):

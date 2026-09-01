@@ -4,7 +4,7 @@ import builtins
 from abc import ABC, abstractmethod
 from uuid import UUID
 
-from sentinelai.contracts import ExecutionSnapshot, ExecutionSummary
+from gods_eye.contracts import ExecutionSnapshot, ExecutionSummary
 
 
 class ExecutionAlreadyExistsError(RuntimeError):

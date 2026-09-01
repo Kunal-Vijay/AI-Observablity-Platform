@@ -6,7 +6,7 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict
 
-from sentinelai.contracts import TerminalExecutionStatus
+from gods_eye.contracts import TerminalExecutionStatus
 
 
 class ExecutionMetadata(BaseModel):

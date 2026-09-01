@@ -72,7 +72,7 @@ export function AppSidebar() {
           onClick={() => setOpen(false)}
         >
           <span className="text-sm font-semibold tracking-tight text-foreground">
-            SentinelAI
+            God's Eye
           </span>
           <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
             Dashboard

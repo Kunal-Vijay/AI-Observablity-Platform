@@ -2,9 +2,9 @@
 
 from fastapi import Request
 
-from sentinelai_platform.execution_store.trace_persister import TracePersister
-from sentinelai_platform.repositories.execution import ExecutionSnapshotRepository
-from sentinelai_platform.repositories.trace import TraceRepository
+from gods_eye_platform.execution_store.trace_persister import TracePersister
+from gods_eye_platform.repositories.execution import ExecutionSnapshotRepository
+from gods_eye_platform.repositories.trace import TraceRepository
 
 
 def get_execution_repository(request: Request) -> ExecutionSnapshotRepository:

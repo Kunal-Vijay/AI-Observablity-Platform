@@ -3,7 +3,7 @@ import asyncio
 from storage3.types import FileOptions
 from supabase import Client, create_client
 
-from sentinelai_platform.ports.storage import StorageProvider
+from gods_eye_platform.ports.storage import StorageProvider
 
 
 class SupabaseStorageProvider(StorageProvider):

@@ -15,7 +15,7 @@ from examples.reference_runtime.retriever.schemas import IndexedDocument
 from examples.reference_runtime.schemas import InvoiceExtraction, LLMResponse
 from examples.reference_runtime.verifier.schemas import VerificationResult
 from examples.reference_runtime.verifier.verifier import Verifier
-from sentinelai import execution
+from gods_eye import execution
 
 __all__ = [
     "AIOrchestrator",

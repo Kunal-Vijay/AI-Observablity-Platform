@@ -148,7 +148,7 @@ function SignInForm() {
       <div>
         <h1 className="text-lg font-semibold">Sign in</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Access the SentinelAI execution dashboard.
+          Access the God's Eye execution dashboard.
         </p>
       </div>
       <form className="space-y-3" onSubmit={onSubmit}>

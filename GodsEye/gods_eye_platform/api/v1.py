@@ -7,20 +7,20 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends, Query, Request
 
-from sentinelai.contracts import ExecutionSnapshot
-from sentinelai_platform.api.auth import require_user
-from sentinelai_platform.api.deps import (
+from gods_eye.contracts import ExecutionSnapshot
+from gods_eye_platform.api.auth import require_user
+from gods_eye_platform.api.deps import (
     get_execution_repository,
     get_trace_persister,
     get_trace_repository,
 )
-from sentinelai_platform.api.errors import ExecutionNotFoundError, InvalidFilterError
-from sentinelai_platform.api.schemas import (
+from gods_eye_platform.api.errors import ExecutionNotFoundError, InvalidFilterError
+from gods_eye_platform.api.schemas import (
     ExecutionListItem,
     ExecutionTraceView,
     PaginatedExecutions,
 )
-from sentinelai_platform.api.trace_views import load_execution_trace
+from gods_eye_platform.api.trace_views import load_execution_trace
 
 router = APIRouter(prefix="/api/v1", dependencies=[Depends(require_user)])
 
@@ -35,8 +35,8 @@ async def list_executions(
     status: str | None = Query(default=None),
     execution_name: str | None = Query(default=None, min_length=1, max_length=256),
     model: str | None = Query(default=None, min_length=1, max_length=256),
-    from_time: datetime | None = Query(default=None),
-    to_time: datetime | None = Query(default=None),
+    from_time: datetime | None = Query(default=None),  # noqa: B008
+    to_time: datetime | None = Query(default=None),  # noqa: B008
 ) -> PaginatedExecutions:
     _validate_list_filters(status=status, from_time=from_time, to_time=to_time)
     repository = get_execution_repository(request)

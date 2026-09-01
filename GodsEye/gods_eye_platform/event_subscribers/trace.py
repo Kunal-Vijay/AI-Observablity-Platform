@@ -2,11 +2,11 @@
 
 import logging
 
-from sentinelai.contracts import Trace
-from sentinelai.execution_stream import ExecutionEvent, TraceCompleted
-from sentinelai_platform.execution_store import TracePersister
+from gods_eye.contracts import Trace
+from gods_eye.execution_stream import ExecutionEvent, TraceCompleted
+from gods_eye_platform.execution_store import TracePersister
 
-logger = logging.getLogger("sentinelai.platform.event_subscribers")
+logger = logging.getLogger("gods_eye.platform.event_subscribers")
 
 
 class TraceCompletedSubscriber:

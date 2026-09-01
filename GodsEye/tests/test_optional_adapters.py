@@ -21,16 +21,16 @@ def _route_paths(routes: list[object]) -> set[str]:
 
 
 def test_postgres_adapter_importable() -> None:
-    module = importlib.import_module("sentinelai_platform.persistence.postgres")
+    module = importlib.import_module("gods_eye_platform.persistence.postgres")
     assert hasattr(module, "PostgresExecutionSnapshotRepository")
     assert hasattr(module, "PostgresTraceRepository")
     assert hasattr(module, "PostgresExecutionLifecycleRepository")
 
 
 def test_storage_adapters_importable() -> None:
-    local = importlib.import_module("sentinelai_platform.storage.local_provider")
-    supabase = importlib.import_module("sentinelai_platform.storage.supabase_provider")
-    provider = importlib.import_module("sentinelai_platform.ports.storage")
+    local = importlib.import_module("gods_eye_platform.storage.local_provider")
+    supabase = importlib.import_module("gods_eye_platform.storage.supabase_provider")
+    provider = importlib.import_module("gods_eye_platform.ports.storage")
     assert hasattr(local, "LocalStorageProvider")
     assert hasattr(supabase, "SupabaseStorageProvider")
     assert hasattr(provider, "StorageProvider")
@@ -38,7 +38,7 @@ def test_storage_adapters_importable() -> None:
 
 def test_api_adapter_requires_fastapi_extra() -> None:
     try:
-        module = importlib.import_module("sentinelai_platform.api")
+        module = importlib.import_module("gods_eye_platform.api")
     except ModuleNotFoundError as exc:
         pytest.skip(f"api extra not installed: {exc}")
     assert hasattr(module, "create_app")
@@ -56,5 +56,5 @@ def test_api_adapter_requires_fastapi_extra() -> None:
 
 
 def test_plugin_protocol_is_documented_extension_point() -> None:
-    module = importlib.import_module("sentinelai.plugins")
+    module = importlib.import_module("gods_eye.plugins")
     assert hasattr(module, "Plugin")

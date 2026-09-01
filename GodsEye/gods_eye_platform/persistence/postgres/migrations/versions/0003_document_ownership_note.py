@@ -4,7 +4,7 @@ Revision ID: 0003_document_ownership_note
 Revises: 0002_execution_snapshots
 Create Date: 2026-07-18
 
-Platform tables (execution_snapshots, traces, spans) are persisted by SentinelAI
+Platform tables (execution_snapshots, traces, spans) are persisted by God's Eye
 Platform. The mutable ``executions`` lifecycle ledger and document tables remain
 available for the reference runtime, but canonical rows no longer depend on the
 lifecycle table via foreign keys.
