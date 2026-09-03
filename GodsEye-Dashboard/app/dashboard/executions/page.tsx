@@ -13,7 +13,10 @@ import { useExecutions } from "@/hooks/use-executions";
 export default function ExecutionsPage() {
   return (
     <>
-      <TopBar title="Executions" breadcrumb="God's Eye / Executions" />
+      <TopBar
+        title="Executions"
+        breadcrumb="God&apos;s Eye / Executions"
+      />
       <main className="space-y-4 p-4 md:p-6">
         <Suspense fallback={<Skeleton className="h-28 w-full" />}>
           <ExecutionFilters />

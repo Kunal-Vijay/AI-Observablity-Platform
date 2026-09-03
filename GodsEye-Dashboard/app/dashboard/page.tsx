@@ -48,7 +48,10 @@ export default function OverviewPage() {
 
   return (
     <>
-      <TopBar title="Overview" breadcrumb="God's Eye / Overview" />
+      <TopBar
+        title="Overview"
+        breadcrumb="God&apos;s Eye / Overview"
+      />
       <main className="space-y-6 p-4 md:p-6">
         <p className="text-xs text-muted-foreground">
           Metrics below are derived from the most recent{" "}

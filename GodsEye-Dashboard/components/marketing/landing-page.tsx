@@ -181,7 +181,7 @@ async def plan(query: str):
     ...
 `}</pre>
         <p className="mt-3 text-sm text-muted-foreground">
-          Annotate business methods. God's Eye captures the execution graph
+          Annotate business methods. God&apos;s Eye captures the execution graph
           automatically.
         </p>
       </section>

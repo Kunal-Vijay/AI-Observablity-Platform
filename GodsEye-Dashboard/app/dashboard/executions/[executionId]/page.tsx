@@ -15,7 +15,7 @@ export default function ExecutionDetailPage({
     <>
       <TopBar
         title="Execution detail"
-        breadcrumb={`God's Eye / Executions / ${executionId}`}
+        breadcrumb={`God’s Eye / Executions / ${executionId}`}
       />
       <main className="p-4 md:p-6">
         <ExecutionDetailView executionId={executionId} />
