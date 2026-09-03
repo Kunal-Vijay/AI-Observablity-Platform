@@ -8,5 +8,5 @@ export const SITE = {
     "https://github.com/Kunal-Vijay/AI-Observablity-Platform",
   productRepoUrl:
     process.env.NEXT_PUBLIC_PRODUCT_GITHUB_URL?.trim() ||
-    "https://github.com/anishwar-007/TracerAI",
+    "https://github.com/Kunal-Vijay/AI-Observablity-Platform",
 } as const;
